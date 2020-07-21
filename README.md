@@ -12,14 +12,15 @@ Seu objetivo é criar uma API que vai retornar os últimos 10 "quadrinhos" do XK
 - A API pode ser criada em qualquer linguagem.
 - A API deverá ter um endpoint que retornará todos os quadrinhos e outro onde retornará apenas um específico.
 - O retorno deverá ser em JSON.
+- Não é necessário ter autenticação.
 - Os quadrinhos precisam ser salvos em algum lugar, não é recomendado ficar consultando a API do XKCD para cada request.
 - Colocar o teste no Github ou Bitbucket e compartilhar o link com a gente!
-- Arquivo README com isntruções de como rodar a API.
+- Arquivo README com instruções de como rodar a API.
 
 ## O que avaliaremos de seu teste
 
-- Qualidade, estrutura, organização, legibilidade do seu código
-- Alcance dos objetivos propostos
+- Qualidade, estrutura, organização, legibilidade do seu código, testes.
+- Alcance dos objetivos propostos.
 
 ## API para utilização no teste
 
