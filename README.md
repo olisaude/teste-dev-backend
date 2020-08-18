@@ -28,4 +28,4 @@ XKCD api: https://xkcd.com/2332/info.0.json / https://xkcd.com/info.0.json
 
 ## Dúvida
 
-Se tiver qualquer dúvida sobre esse teste, envie um email com o título "[Teste Dev Back-End] Dúvida" para contato@olisaude.com.br
+Se tiver qualquer dúvida sobre esse teste, envie um email com o título "[Teste Dev Back-End] Dúvida" para contato@olisaude.com.br e gerson.pechim@olisaude.com.br
