@@ -31,9 +31,8 @@ Problemas de Saúde
 Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual o cálculo é:
     
     ```
-        sd = soma dos grau do problemas
+        sd = soma do grau dos problemas
         score = (1 / (1 + eˆ-(-2.8 + sd ))) * 100
-
     ```
 
 # Requisitos
