@@ -1,31 +1,51 @@
 ![Oli Saúde|100x397,20%](https://hs-7708371.f.hubspotfree.net/hub/7708371/hubfs/logo-olisaude.png?upscale=true&width=288&upscale=true&name=logo-olisaude.png)
 
-# Teste desenvolvedor Back-end Oli Saúde
+# Backend Developer Challenge
+Este é um desafio simples para testar suas habilidades na construção de APIs.
+Os serviços da Oli usam principalmente tecnologias Kotlin e Springboot. No entanto, você pode usar qualquer linguagem e framework que lhe pareça mais confortável.
 
-Este teste é apresentado aos candidatos as vagas de desenvolvimento Back-end para avaliar os quesitos técnicos.
+# O Desafio
+Crie uma API simples para gerenciar Clientes. Esta API deve permitir:
+- Criar um cliente
+- Editar um cliente
+- Obter um cliente específico
+- Listar clientes
 
-## O Desafio
-Seu objetivo é criar uma API que vai retornar os últimos 10 "quadrinhos" do XKCD (https://xkcd.com/).
+Um Cliente deve ter os seguintes campos:
+- nome
+- data de nascimento
+- sexo 
+- [ problemas de saude ]
+- data de criação
+- data de atualização
 
-## Pré-requisitos
+Problemas de Saúde
+- nome
+- grau do problema (de 1 a 2)
+    
+    ```
+    ex: diabetes, grau 2
+    ```
 
-- A API pode ser criada em qualquer linguagem.
-- A API deverá ter um endpoint que retornará todos os quadrinhos e outro onde retornará apenas um específico.
-- O retorno deverá ser em JSON.
-- Não é necessário ter autenticação.
-- Os quadrinhos precisam ser salvos em algum lugar, não é recomendado ficar consultando a API do XKCD para cada request.
-- Colocar o teste no Github ou Bitbucket e compartilhar o link com a gente!
-- Arquivo README com instruções de como rodar a API.
+# O Desafio 
+Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual o cálculo é:
+    
+    ```
+        sd = soma dos grau do problemas
+        score = (1 / (1 + eˆ-(-2.8 + sd ))) * 100
 
-## O que avaliaremos de seu teste
+    ```
 
-- Qualidade, estrutura, organização, legibilidade do seu código, testes.
+# Requisitos
+- Todas as respostas da API devem ser JSON
+- Fornece um arquivo README.md com instruções de uso (como executar, endpoints etc)
+
+# Recomendações
+- Tests, tests and tests
+- SOLID
+- Código e commits em inglês (métodos, classes, variáveis, etc)
+
+# Avaliação
+- Estrutura, arquitetura e organização do projeto
+- Boas práticas de programação
 - Alcance dos objetivos propostos.
-
-## API para utilização no teste
-
-XKCD api: https://xkcd.com/2332/info.0.json / https://xkcd.com/info.0.json
-
-## Dúvida
-
-Se tiver qualquer dúvida sobre esse teste, envie um email com o título "[Teste Dev Back-End] Dúvida" para contato@olisaude.com.br e gerson.pechim@olisaude.com.br
