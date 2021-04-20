@@ -27,7 +27,6 @@ Problemas de Saúde
     ex: diabetes, grau 2
     ```
 
-# O Desafio 
 Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual o cálculo é:
     
     ```
@@ -48,3 +47,8 @@ Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual 
 - Estrutura, arquitetura e organização do projeto
 - Boas práticas de programação
 - Alcance dos objetivos propostos.
+
+# Entrega
+Você deve fazer um fork deste repositório e confirmar a solução na pasta de dev. Seu repositório deve ser público.
+
+Enviar um e-mail para tech@olisaude.com.br com a url da sua solução.
