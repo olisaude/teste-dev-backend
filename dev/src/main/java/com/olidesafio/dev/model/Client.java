@@ -30,9 +30,9 @@ public class Client {
 	
 	//put date later here
 	
-	@OneToMany (mappedBy = "heathProblem",cascade = CascadeType.ALL)
+	/*@OneToMany (mappedBy = "heathProblem",cascade = CascadeType.ALL)
 	@JsonIgnoreProperties ("heathProblem")
-	private List<HeathProblem> heathProblem;
+	private List<HeathProblem> heathProblem;*/
 
 	public long getId() {
 		return id;
