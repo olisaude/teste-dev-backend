@@ -1,13 +1,10 @@
 package com.olidesafio.dev.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,10 +27,13 @@ public class Client {
 	
 	//put date later here
 	
-	/*@OneToMany (mappedBy = "heathProblem",cascade = CascadeType.ALL)
-	@JsonIgnoreProperties ("heathProblem")
-	private List<HeathProblem> heathProblem;*/
+	
+	@ManyToOne
+	@JsonIgnoreProperties ("Client")
+	@NotNull
+	private HeathProblem heathProblem;
 
+	
 	public long getId() {
 		return id;
 	}

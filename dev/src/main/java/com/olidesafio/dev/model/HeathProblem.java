@@ -24,11 +24,19 @@ public class HeathProblem {
 	private String nameDisease;
 	
 	@NotNull
-	private int degreeDisease;
+	private Long degreeDisease;
+	
+	
+	//private int sd;
+	
+	
+	//private double score;//=(1/(1+2.73431-(2.8+sd)))*100;
 	
 	@OneToMany (mappedBy = "heathProblem",cascade = CascadeType.ALL)
 	@JsonIgnoreProperties ("heathProblem")
 	private List<Client> client;
+	
+
 
 	public List<Client> getClient() {
 		return client;
@@ -54,11 +62,11 @@ public class HeathProblem {
 		this.nameDisease = nameDisease;
 	}
 
-	public int getDegreeDisease() {
+	public long getDegreeDisease() {
 		return degreeDisease;
 	}
 
-	public void setDegreeDisease(int degreeDisease) {
+	public void setDegreeDisease(long degreeDisease) {
 		this.degreeDisease = degreeDisease;
 	}
 	
