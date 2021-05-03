@@ -26,11 +26,10 @@ public class Client {
 	private String birthDate;
 	
 	//put date later here
-	
+	 
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("Client")
-	@NotNull
 	private HeathProblem heathProblem;
 
 	

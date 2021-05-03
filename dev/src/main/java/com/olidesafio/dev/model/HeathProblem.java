@@ -26,11 +26,7 @@ public class HeathProblem {
 	@NotNull
 	private Long degreeDisease;
 	
-	
-	//private int sd;
-	
-	
-	//private double score;//=(1/(1+2.73431-(2.8+sd)))*100;
+	//score;//=(1/(1+2.73431-(2.8+sd)))*100;
 	
 	@OneToMany (mappedBy = "heathProblem",cascade = CascadeType.ALL)
 	@JsonIgnoreProperties ("heathProblem")
