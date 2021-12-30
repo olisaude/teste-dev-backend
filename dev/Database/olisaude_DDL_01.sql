@@ -1,0 +1,26 @@
+
+CREATE DATABASE db_oliSaude
+GO
+
+USE db_oliSaude
+GO
+
+CREATE TABLE healthProblems
+(
+	id					UNIQUEIDENTIFIER PRIMARY KEY NOT NULL
+	,[name]				VARCHAR(100) NOT NULL	
+	,degreeOfProblem	INT NOT NULL
+);
+GO
+
+CREATE TABLE clients
+(
+	id					UNIQUEIDENTIFIER PRIMARY KEY NOT NULL
+	,[name]				VARCHAR(100) NOT NULL
+	,birthDate			DATE NOT NULL
+	,sex				VARCHAR(100) NOT NULL
+	,idHealthProblems	UNIQUEIDENTIFIER FOREIGN KEY REFERENCES healthProblems(id)
+	,creationDate		DATE NOT NULL
+	,updateDate			DATE NOT NULL
+);
+GO
