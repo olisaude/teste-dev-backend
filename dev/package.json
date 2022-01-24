@@ -1,0 +1,32 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "Api de gerenciamento de clientes",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test& jest --runInBand --detectOpenHandles",
+    "start": "node ./src/api/server.js",
+    "dev": "nodemon ./src/api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vitor-Hugo-Dev/teste-dev-backend.git"
+  },
+  "author": "Vitor Hugo da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vitor-Hugo-Dev/teste-dev-backend/issues"
+  },
+  "homepage": "https://github.com/Vitor-Hugo-Dev/teste-dev-backend#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "body-parser": "^1.19.1",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "jest": "^27.4.7",
+    "mongodb": "^4.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
