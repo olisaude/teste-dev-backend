@@ -6,6 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test& jest --runInBand --detectOpenHandles",
     "start": "node ./src/api/server.js",
+    "lint": "eslint --no-inline-config --ext .js --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "dev": "nodemon ./src/api/server.js"
   },
   "repository": {
@@ -27,6 +28,8 @@
     "mongodb": "^4.3.1"
   },
   "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-trybe-backend": "^1.0.4",
     "nodemon": "^2.0.15"
   }
 }

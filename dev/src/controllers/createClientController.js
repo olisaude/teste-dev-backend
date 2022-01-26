@@ -1,5 +1,5 @@
 const createClientService = require('../services/createClientService');
-const { created } = require("../utils/statusCode");
+const { created } = require('../utils/statusCode');
 
 module.exports = async (req, res, next) => {
   try {
