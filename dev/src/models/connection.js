@@ -2,7 +2,7 @@ const mongodb = require('mongodb').MongoClient;
 
 require('dotenv').config();
 
-const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/Clients`;
+const MONGO_DB_URL = process.env.URL_MONGO || 'mongodb://localhost:27017';
 const { DB_NAME } = process.env;
 
 module.exports = () =>
