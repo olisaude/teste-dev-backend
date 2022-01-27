@@ -153,7 +153,7 @@ PUT	http://localhost:3000/clients/:id
   }
   ```
 
-  O retorno será um json com o cliente editado.
+O retorno será um json com o cliente editado.
 
 ## Para obter os 10 com maior risco de saúde:
 
