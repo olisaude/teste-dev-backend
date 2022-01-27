@@ -59,8 +59,6 @@ Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual 
 
 ## Observações:
 
-- O banco de dados da aplicação é o mongoDB.
-- É necessário criar um banco com o nome "Oli_Clientes"
 - A aplicação roda na porta 3000, se for necessário pode alterar a porta, alterando a variável de ambiente no arquivo .env.
 
 - Realizar o clone do projeto: 
@@ -87,7 +85,11 @@ Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual 
   npm start
   ```
 
-  
+- O banco de dados da aplicação é o mongoDB.
+
+- A aplicação esta linkada com um banco de dados hospedado no Atlas.
+
+- Caso haja algum problema para se conectar com o atlas,  É necessário rodar o mongoDB localmente e criar um banco com o nome "Oli_Clientes"
 
 # Endpoints
 
