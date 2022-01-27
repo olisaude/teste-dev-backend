@@ -4,7 +4,7 @@
   "description": "Api de gerenciamento de clientes",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test& jest --runInBand --detectOpenHandles",
+    "test": "mocha ./src/tests/**.test.js --exit",
     "start": "node ./src/api/server.js",
     "lint": "eslint --no-inline-config --ext .js --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "dev": "nodemon ./src/api/server.js"
@@ -24,12 +24,16 @@
     "body-parser": "^1.19.1",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
-    "jest": "^27.4.7",
     "mongodb": "^4.3.1"
   },
   "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "eslint": "^8.7.0",
     "eslint-config-trybe-backend": "^1.0.4",
-    "nodemon": "^2.0.15"
+    "mocha": "^9.2.0",
+    "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.15",
+    "sinon": "^12.0.1"
   }
 }

@@ -1,15 +1,30 @@
-const listClients = require('../models/listClients');
+/* eslint-disable max-lines-per-function */
+const getCriticalClients = require('../models/getCriticalClients');
 
 module.exports = async () => {
-  const clients = await listClients();
-
-  const getCriticalClients = clients.map(client => {
-    const problemSum = client.problems.reduce((acc, problem) => acc + problem.level, 0);
-
-    const score = (1 / (1 + Math.pow(Math.E, -(2.8 + problemSum / client.problems.length)))) * 100;
-    return {...client, problemSum: score}
-  });
-
-
-  return getCriticalClients.sort((a, b) => a.problemSum < b.problemSum ? 1 : -1).slice(0, 10);
+  const criticos = await getCriticalClients();
+  const novo = criticos
+    .sort((a, b) => (a.score < b.score ? 1 : -1))
+    .slice(0, 10)
+    .map((client) => {
+      const {
+        _id,
+        name,
+        birthDate,
+        gender,
+        problems,
+        creationDate,
+        editedDate,
+      } = client;
+      return {
+        _id,
+        name,
+        birthDate,
+        gender,
+        problems,
+        creationDate,
+        editedDate,
+      };
+    });
+  return novo;
 };
