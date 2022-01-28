@@ -84,6 +84,13 @@ Criar um endpoint para trazer os 10 clientes com maior risco de saúde, no qual 
   ```
   npm start
   ```
+  
+- Para rodar os testes da aplicação:
+
+  ```
+  npm test
+  ```
+
 
 - O banco de dados da aplicação é o mongoDB.
 
