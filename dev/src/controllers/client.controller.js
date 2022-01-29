@@ -1,29 +1,55 @@
-const { createClient } = require('../services/client.service');
-const { created } = require('../utils/dictionary/statusCode');
+const { createClient, findClientById, findClientByNameAndBirthDate } = require('../services/client.service');
+const { created, success } = require('../utils/dictionary/statusCode');
 const currentDate = require('../utils/functions/currentDate');
 
-const userCreate = async (req, res) => {
-  const { name, gender, health_problems, birth_date } = req.body;
-  
+const clientCreate = async (req, res, next) => {
+  const { body } = req;
+  const creationDate = currentDate();
+  const client = {
+    ...body,
+    creationDate,
+  };
+
   try {
-    const creation_date = currentDate();
-    const id = await createClient(name, gender, health_problems, birth_date, creation_date);
+    const id = await createClient(client);
 
     const newCustomer = {
       _id: id,
-      name,
-      birth_date,
-      gender,
-      health_problems,
-      creation_date,
-    }
+      ...client,
+    };
 
-    return res.status(created).json({ 'registered customer': newCustomer });
+    return res.status(created).json(newCustomer);
   } catch (error) {
-    return res.status(error.status).json({ message: error.message });
+    next(error);
+  }
+};
+
+const getClientByIdController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const client = await findClientById(id);
+
+    return res.status(success).json(client);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getClientByNameAndBirthDateController = async (req, res, next) => {
+  try {
+    const { name, birthDate } = req.body;
+
+    const client = await findClientByNameAndBirthDate(name, birthDate);
+
+    return res.status(success).json(client);
+  } catch (error) {
+    next(error);
   }
 };
 
 module.exports = {
-  userCreate,
+  clientCreate,
+  getClientByIdController,
+  getClientByNameAndBirthDateController,
 };
