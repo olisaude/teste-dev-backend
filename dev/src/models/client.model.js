@@ -26,8 +26,17 @@ const getClientByNameAndBirthDate = async (name, birthDate) => {
   return client;
 };
 
+const update = async (name, gender, healthProblems, birthDate, updateDate) => {
+  const db = await connect();
+  await db.collection(DB_COLLECTION)
+    .updateOne({ name, birthDate }, { $set: { healthProblems, updateDate } });
+  const recipe = await getClientByNameAndBirthDate(name, birthDate);
+  return recipe;
+};
+
 module.exports = {
   create,
   getClientById,
   getClientByNameAndBirthDate,
+  update,
 };

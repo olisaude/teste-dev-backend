@@ -1,4 +1,9 @@
-const { createClient, findClientById, findClientByNameAndBirthDate } = require('../services/client.service');
+const {
+  createClient,
+  findClientById,
+  findClientByNameAndBirthDate,
+  updateClient,
+} = require('../services/client.service');
 const { created, success } = require('../utils/dictionary/statusCode');
 const currentDate = require('../utils/functions/currentDate');
 
@@ -48,8 +53,23 @@ const getClientByNameAndBirthDateController = async (req, res, next) => {
   }
 };
 
+const clientUpdate = async (req, res, next) => {
+  try {
+    const {
+      name, gender, healthProblems, birthDate,
+    } = req.body;
+    const updateDate = currentDate();
+    const client = await updateClient(name, gender, healthProblems, birthDate, updateDate);
+
+    return res.status(success).json(client);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   clientCreate,
   getClientByIdController,
   getClientByNameAndBirthDateController,
+  clientUpdate,
 };
