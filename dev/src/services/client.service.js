@@ -33,7 +33,7 @@ const validateDate = (date) => {
   if (error) throw errorHandling(badRequest, invalidDate);
 };
 
-const createClient = async (name, gender, health_problems, birth_date) => {
+const createClient = async (name, gender, health_problems, birth_date, creation_date) => {
   validateClient(name, gender, health_problems);
   validateDate(birth_date);
 
@@ -41,7 +41,7 @@ const createClient = async (name, gender, health_problems, birth_date) => {
 
   if (emailAlreadyExists) throw errorHandling(conflict, emailAlreadyRegistered); */
 
-  const id = await create(name, gender, health_problems, birth_date);
+  const id = await create(name, gender, health_problems, birth_date, creation_date);
   return id;
 };
 
