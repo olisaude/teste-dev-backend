@@ -1,10 +1,12 @@
 const { createClient } = require('../services/client.service');
 const { created } = require('../utils/dictionary/statusCode');
+const currentDate = require('../utils/functions/currentDate');
 
-const userCreate = async (req, res, _next) => {
+const userCreate = async (req, res) => {
   const { name, gender, health_problems, birth_date } = req.body;
-  const creation_date = Date();
+  
   try {
+    const creation_date = currentDate();
     const id = await createClient(name, gender, health_problems, birth_date, creation_date);
 
     const newCustomer = {

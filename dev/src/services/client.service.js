@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi');
+const Joi = require('joi').extend(require('@hapi/joi-date'));
 const errorHandling = require('../utils/functions/erroHandling');
 const { badRequest } = require('../utils/dictionary/statusCode');
 const { invalidEntry, invalidDate } = require('../utils/dictionary/messagesDefault');
@@ -12,7 +12,7 @@ const clientSchema = Joi.object({
 });
 
 const dateSchema = Joi.object({
-  date: Joi.date().iso(),
+  date: Joi.date().format('DD-MM-YYYY'),
 });
 
 const validateClient = (name, gender, health_problems) => {
