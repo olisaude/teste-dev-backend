@@ -1,8 +1,10 @@
 const express = require('express');
-const { userCreate } = require('../controllers/client.controller');
+const { clientCreate, getClientByIdController, getClientByNameAndBirthDateController } = require('../controllers/client.controller');
 
 const router = express.Router();
 
-router.post('/', userCreate);
+router.post('/', clientCreate);
+router.get('/:id', getClientByIdController);
+router.get('/', getClientByNameAndBirthDateController);
 
 module.exports = router;
