@@ -3,11 +3,11 @@ const connect = require('./connection');
 
 const DB_COLLECTION = 'clients';
 
-const create = async (name, gender, healthProblems, birthDate, creationDate) => {
+const create = async (name, gender, healthProblems, birthDate, creationDate, score) => {
   const db = await connect();
   const { insertedId } = await db.collection(DB_COLLECTION)
     .insertOne({
-      name, birthDate, gender, healthProblems, creationDate,
+      name, birthDate, gender, healthProblems, creationDate, score,
     });
   return insertedId;
 };
@@ -26,10 +26,10 @@ const getClientByNameAndBirthDate = async (name, birthDate) => {
   return client;
 };
 
-const update = async (name, gender, healthProblems, birthDate, updateDate) => {
+const update = async (name, gender, healthProblems, birthDate, updateDate, score) => {
   const db = await connect();
   await db.collection(DB_COLLECTION)
-    .updateOne({ name, birthDate }, { $set: { healthProblems, updateDate } });
+    .updateOne({ name, birthDate }, { $set: { gender, healthProblems, updateDate, score } });
   const recipe = await getClientByNameAndBirthDate(name, birthDate);
   return recipe;
 };

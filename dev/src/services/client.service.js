@@ -18,6 +18,7 @@ const clientSchema = Joi.object({
   name: Joi.string().required(),
   gender: Joi.string().required(),
   healthProblems: Joi.array().items(Joi.string()),
+  score: Joi.number(),
 });
 
 const dateSchema = Joi.object({
@@ -54,17 +55,15 @@ const validateDate = (date) => {
   if (error) throw errorHandling(badRequest, invalidDate);
 };
 
-const createClient = async ({
-  name, gender, healthProblems, birthDate, creationDate,
-}) => {
-  validateClient(name, gender, healthProblems);
+const createClient = async (name, gender, healthProblems, birthDate, creationDate, score) => {
+  validateClient(name, gender, healthProblems, score);
   validateDate(birthDate);
 
   const clientAlreadyExists = await getClientByNameAndBirthDate(name, birthDate);
 
   if (clientAlreadyExists) throw errorHandling(conflict, clientAlreadyRegistered);
 
-  const id = await create(name, gender, healthProblems, birthDate, creationDate);
+  const id = await create(name, gender, healthProblems, birthDate, creationDate, score);
   return id;
 };
 
@@ -83,10 +82,10 @@ const findClientByNameAndBirthDate = async (name, birthDate) => {
   return client;
 };
 
-const updateClient = async (name, gender, healthProblems, birthDate, updateDate) => {
-  validateClient(name, gender, healthProblems);
+const updateClient = async (name, gender, healthProblems, birthDate, updateDate, score) => {
+  validateClient(name, gender, healthProblems, score);
   validateDate(birthDate);
-  const client = await update(name, gender, healthProblems, birthDate, updateDate);
+  const client = await update(name, gender, healthProblems, birthDate, updateDate, score);
   if (!client) throw errorHandling(notFound, clientNotFound);
 
   return client;
