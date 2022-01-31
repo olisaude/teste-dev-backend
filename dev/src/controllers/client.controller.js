@@ -2,7 +2,9 @@ const {
   createClient,
   findClientById,
   findClientByNameAndBirthDate,
+  findAllClients,
   updateClient,
+  findTenHighScores,
 } = require('../services/client.service');
 const { created, success } = require('../utils/dictionary/statusCode');
 const currentDate = require('../utils/functions/currentDate');
@@ -13,7 +15,7 @@ const clientCreate = async (req, res, next) => {
     name, gender, healthProblems, birthDate,
   } = req.body;
   const creationDate = currentDate();
-  const score = scoreFunction(healthProblems);
+  const score = Number(scoreFunction(healthProblems));
 
   try {
     const id = await createClient(
@@ -55,11 +57,23 @@ const getClientByIdController = async (req, res, next) => {
 
 const getClientByNameAndBirthDateController = async (req, res, next) => {
   try {
-    const { name, birthDate } = req.body;
+    const { name, birthDate } = req.query;
+
+    // http://localhost:3000/clients/?name=Manana&birthDate=16-05-1998
+
 
     const client = await findClientByNameAndBirthDate(name, birthDate);
 
     return res.status(success).json(client);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getClients = async (req, res, next) => {
+  try {
+    const clients = await findAllClients();
+    return res.status(success).json(clients);
   } catch (error) {
     next(error);
   }
@@ -71,10 +85,19 @@ const clientUpdate = async (req, res, next) => {
       name, gender, healthProblems, birthDate,
     } = req.body;
     const updateDate = currentDate();
-    const score = scoreFunction(healthProblems);
+    const score = Number(scoreFunction(healthProblems));
     const client = await updateClient(name, gender, healthProblems, birthDate, updateDate, score);
 
     return res.status(success).json(client);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const tenHighScores = async (req, res, next) => {
+  try {
+    const clients = await findTenHighScores();
+    return res.status(success).json(clients);
   } catch (error) {
     next(error);
   }
@@ -84,5 +107,7 @@ module.exports = {
   clientCreate,
   getClientByIdController,
   getClientByNameAndBirthDateController,
+  getClients,
   clientUpdate,
+  tenHighScores,
 };

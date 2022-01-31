@@ -6,12 +6,15 @@ const {
   invalidDate,
   clientNotFound,
   clientAlreadyRegistered,
+  noClientsRegistered,
 } = require('../utils/dictionary/messagesDefault');
 const {
   create,
   getClientById,
   getClientByNameAndBirthDate,
+  getAllClients,
   update,
+  getTenHighScores,
 } = require('../models/client.model');
 
 const clientSchema = Joi.object({
@@ -82,6 +85,12 @@ const findClientByNameAndBirthDate = async (name, birthDate) => {
   return client;
 };
 
+const findAllClients = async () => {
+  const clients = await getAllClients();
+  if (!clients) throw errorHandling(notFound, noClientsRegistered);
+  return clients;
+};
+
 const updateClient = async (name, gender, healthProblems, birthDate, updateDate, score) => {
   validateClient(name, gender, healthProblems, score);
   validateDate(birthDate);
@@ -91,9 +100,17 @@ const updateClient = async (name, gender, healthProblems, birthDate, updateDate,
   return client;
 };
 
+const findTenHighScores = async () => {
+  const clients = await getTenHighScores();
+  if (!clients) throw errorHandling(notFound, noClientsRegistered);
+  return clients;
+};
+
 module.exports = {
   createClient,
   findClientById,
   findClientByNameAndBirthDate,
+  findAllClients,
   updateClient,
+  findTenHighScores,
 };
