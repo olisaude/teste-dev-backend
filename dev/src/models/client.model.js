@@ -3,7 +3,9 @@ const connect = require('./connection');
 
 const DB_COLLECTION = 'clients';
 
-const create = async (name, gender, healthProblems, birthDate, creationDate, score) => {
+const create = async ({
+  name, gender, healthProblems, birthDate, creationDate, score,
+}) => {
   const db = await connect();
   const { insertedId } = await db.collection(DB_COLLECTION)
     .insertOne({
@@ -16,6 +18,7 @@ const getClientById = async (id) => {
   const db = await connect();
   const client = await db.collection(DB_COLLECTION)
     .findOne({ _id: ObjectId(id) });
+  console.log(client);
   return client;
 };
 
@@ -32,7 +35,9 @@ const getAllClients = async () => {
   return clients;
 };
 
-const update = async (name, gender, healthProblems, birthDate, updateDate, score) => {
+const update = async ({
+  name, gender, healthProblems, birthDate, updateDate, score,
+}) => {
   const db = await connect();
   await db.collection(DB_COLLECTION)
     .updateOne({ name, birthDate }, {
@@ -47,7 +52,7 @@ const update = async (name, gender, healthProblems, birthDate, updateDate, score
 const getTenHighScores = async () => {
   const db = await connect();
   const clients = await db.collection(DB_COLLECTION)
-    .find().sort({ score: -1 }).limit(10)
+    .find().sort({ score: -1 }, { name: 1 }).limit(10)
     .toArray();
   return clients;
 };

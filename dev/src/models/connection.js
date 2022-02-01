@@ -3,7 +3,7 @@ const mongodb = require('mongodb').MongoClient;
 const MONGO_DB_URL = 'mongodb://localhost:27017/OliSaude';
 const DB_NAME = 'OliSaude';
 
-module.exports = () => mongodb.connect(MONGO_DB_URL, {
+const connect = () => mongodb.connect(MONGO_DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -12,3 +12,5 @@ module.exports = () => mongodb.connect(MONGO_DB_URL, {
     console.error(err);
     process.exit(1);
   });
+
+module.exports = connect;

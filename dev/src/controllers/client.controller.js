@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 const {
   createClient,
   findClientById,
@@ -16,25 +17,21 @@ const clientCreate = async (req, res, next) => {
   } = req.body;
   const creationDate = currentDate();
   const score = Number(scoreFunction(healthProblems));
+  const newClient = {
+    name,
+    gender,
+    healthProblems,
+    birthDate,
+    creationDate,
+    score,
+  };
 
   try {
-    const id = await createClient(
-      name,
-      gender,
-      healthProblems,
-      birthDate,
-      creationDate,
-      score,
-    );
+    const id = await createClient(newClient);
 
     const newCustomer = {
       _id: id,
-      name,
-      gender,
-      healthProblems,
-      birthDate,
-      creationDate,
-      score,
+      ...newClient,
     };
 
     return res.status(created).json(newCustomer);
@@ -61,7 +58,6 @@ const getClientByNameAndBirthDateController = async (req, res, next) => {
 
     // http://localhost:3000/clients/?name=Manana&birthDate=16-05-1998
 
-
     const client = await findClientByNameAndBirthDate(name, birthDate);
 
     return res.status(success).json(client);
@@ -86,7 +82,10 @@ const clientUpdate = async (req, res, next) => {
     } = req.body;
     const updateDate = currentDate();
     const score = Number(scoreFunction(healthProblems));
-    const client = await updateClient(name, gender, healthProblems, birthDate, updateDate, score);
+    const clientUpdated = {
+      name, gender, healthProblems, birthDate, updateDate, score,
+    };
+    const client = await updateClient(clientUpdated);
 
     return res.status(success).json(client);
   } catch (error) {

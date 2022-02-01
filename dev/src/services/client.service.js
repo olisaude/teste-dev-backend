@@ -46,6 +46,7 @@ const validateClient = (name, gender, healthProblems) => {
     gender,
     healthProblems,
   });
+  console.log(error);
 
   if (error) throw errorHandling(badRequest, invalidEntry);
 };
@@ -58,7 +59,10 @@ const validateDate = (date) => {
   if (error) throw errorHandling(badRequest, invalidDate);
 };
 
-const createClient = async (name, gender, healthProblems, birthDate, creationDate, score) => {
+const createClient = async (client) => {
+  const {
+    name, gender, healthProblems, birthDate, creationDate, score,
+  } = client;
   validateClient(name, gender, healthProblems, score);
   validateDate(birthDate);
 
@@ -66,7 +70,7 @@ const createClient = async (name, gender, healthProblems, birthDate, creationDat
 
   if (clientAlreadyExists) throw errorHandling(conflict, clientAlreadyRegistered);
 
-  const id = await create(name, gender, healthProblems, birthDate, creationDate, score);
+  const id = await create(client);
   return id;
 };
 
@@ -91,11 +95,14 @@ const findAllClients = async () => {
   return clients;
 };
 
-const updateClient = async (name, gender, healthProblems, birthDate, updateDate, score) => {
+const updateClient = async (client) => {
+  const {
+    name, gender, healthProblems, birthDate, score,
+  } = client;
   validateClient(name, gender, healthProblems, score);
   validateDate(birthDate);
-  const client = await update(name, gender, healthProblems, birthDate, updateDate, score);
-  if (!client) throw errorHandling(notFound, clientNotFound);
+  const clientUpdated = await update(client);
+  if (!clientUpdated) throw errorHandling(notFound, clientNotFound);
 
   return client;
 };
