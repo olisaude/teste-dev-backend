@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('GET /clients/:id', () => {
+describe('PUT /clients/', () => {
   describe('quando o cliente é encontrado com sucesso', () => {
     let response = {};
     const DBServer = new MongoMemoryServer();

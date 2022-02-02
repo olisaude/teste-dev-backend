@@ -18,7 +18,6 @@ const getClientById = async (id) => {
   const db = await connect();
   const client = await db.collection(DB_COLLECTION)
     .findOne({ _id: ObjectId(id) });
-  console.log(client);
   return client;
 };
 
