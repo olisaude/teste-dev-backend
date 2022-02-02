@@ -49,8 +49,9 @@ describe('GET /clients/:id', () => {
     });
   });
 
-  describe('Quando o payload é inválido', () => {
+  describe('Quando a requisição é inválida', () => {
     let response = {};
+    const falseId = '61f9a282d604d50e6fca4510';
 
     const DBServer = new MongoMemoryServer();
 
@@ -63,10 +64,10 @@ describe('GET /clients/:id', () => {
 
       sinon.stub(MongoClient, 'connect')
         .resolves(connectionMock);
+      await chai.request(app).post('/clients').send(clients[0]);
 
       response = await chai.request(app)
-        .post('/clients')
-        .send({});
+        .get(`/clients/${falseId}`);
     });
 
     after(async () => {
@@ -74,8 +75,8 @@ describe('GET /clients/:id', () => {
       await DBServer.stop();
     });
 
-    it('recebe o status 400', () => {
-      expect(response).to.have.status(400);
+    it('recebe o status 404', () => {
+      expect(response).to.have.status(404);
     });
 
     it('retorna um objeto', () => {
@@ -87,10 +88,10 @@ describe('GET /clients/:id', () => {
     });
 
     it(
-      'a propriedade "message" possui o texto "Invalid entries. Try again."',
+      'a propriedade "message" possui o texto "Client not found"',
       () => {
         expect(response.body.message)
-          .to.be.equal('Invalid entries. Try again.');
+          .to.be.equal('Client not found');
       },
     );
   });
