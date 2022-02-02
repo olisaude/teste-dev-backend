@@ -7,6 +7,7 @@ const sinon = require('sinon');
 const { MongoClient } = require('mongodb');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const app = require('../api/index');
+const clients = require('./utils/clients');
 
 chai.use(chaiHttp);
 
@@ -30,19 +31,7 @@ describe('POST /clients', () => {
 
       response = await chai.request(app)
         .post('/clients')
-        .send({
-          name: 'Mariana',
-          gender: 'Female',
-          healthProblems: [
-            'Pressão alta',
-            'Grau 1',
-            'Refluxo',
-            'Grau 2',
-          ],
-          birthDate: '17-03-1994',
-          creationDate: '29-1-2022',
-          score: '54.98',
-        });
+        .send(clients[0]);
     });
 
     after(async () => {
