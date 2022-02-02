@@ -102,3 +102,6 @@ O endpoint que trás os 10 clientes com maior risco de saúde é `clientes/ten`.
 
 ## Para testar o projeto
 
+Para testar o projeto, colocar no terminal:
+
+`NAME=<nome_do_arquivo> npm test`
