@@ -15,7 +15,6 @@ const { expect } = chai;
 
 describe('GET /clients/:id', () => {
   describe('quando ocliente é encontrado com sucesso', () => {
-    let clientId;
     let response = {};
     const DBServer = new MongoMemoryServer();
 
@@ -31,7 +30,6 @@ describe('GET /clients/:id', () => {
       const client = await chai.request(app).post('/clients').send(clients[0]);
 
       const { _id } = client.body;
-      clientId = _id;
 
       response = await chai.request(app)
         .get(`/clients/${_id}`);
