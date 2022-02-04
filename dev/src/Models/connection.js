@@ -7,8 +7,8 @@ const OPTIONS = {
     useUnifiedTopology: true,
 };
 
-const { DB_NAME } = process.env;
-const MONGO_DB_URL = `mongodb://${process.env.URL || 'mongodb'}:27017/OLI_SAUDE`;
+const DB_NAME = 'OLI_SAUDE';
+const MONGO_DB_URL = `mongodb://${process.env.HOST || 'mongodb'}:27017/OLI_SAUDE`;
 
 let db = null;
 
