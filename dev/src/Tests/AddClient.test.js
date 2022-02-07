@@ -26,7 +26,7 @@ describe('Add a new customer', () => {
     MongoClient.connect.restore();
   });
 
-  describe('When it is successfully entered', () => {
+  describe('When it returns the complete list successfully', () => {
     it('returns an object', () => {
       const response = clientModel.create(payloadClient);
 
