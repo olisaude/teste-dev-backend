@@ -4,7 +4,7 @@ const {MongoClient} = require('mongodb');
 const {getConnection} = require('./mongoMockConnection');
 
 
-describe('Adiciona um novo cliente', () => {
+describe('Add a new customer', () => {
   const clientModel = {
     create: () => {
       return {};
