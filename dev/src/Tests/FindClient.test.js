@@ -1,4 +1,3 @@
-const {expect} = require('chai');
 const sinon = require('sinon');
 const {MongoClient} = require('mongodb');
 const {getConnection} = require('./mongoMockConnection');
