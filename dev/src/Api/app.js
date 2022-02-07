@@ -6,10 +6,13 @@ const {addClientController} = require('../Controllers/AddClientControl');
 const {findClientControllers} = require('../Controllers/FindClientControl');
 const {listClientsController} = require('../Controllers/ListClientsControl');
 const {updateClientController} = require('../Controllers/UpdateClientControl');
+const {healthRiskController} = require('../Controllers/HealthRiskControl');
 
 app.use(bodyParser.json());
 
 app.post('/clients/add', addClientController);
+
+app.get('/clients/healthrisk', healthRiskController);
 
 app.get('/clients/:id', findClientControllers);
 
