@@ -21,9 +21,9 @@ public class ClienteRepositorio : IClienteRepositorio
                 .ToList(); 
     }
 
-    public Cliente GetCliente(int id)
+    public async Task<Cliente> GetClienteAsync(int id)
     {
-       var cliente =  _context.Clientes.FirstOrDefault(c => c.Id == id);
+       var cliente =  await _context.Clientes.FirstOrDefaultAsync(c => c.Id == id);
         return cliente; 
     }
 
@@ -35,7 +35,7 @@ public class ClienteRepositorio : IClienteRepositorio
         return cliente.Id;
     }
 
-    public async Task UpdateCliente(Cliente cliente, CancellationToken cancellationToken)
+    public async Task UpdateClienteAsync(Cliente cliente, CancellationToken cancellationToken)
     {
         _context.Entry(cliente).State = EntityState.Modified; 
        await  _context.SaveChangesAsync(cancellationToken);
