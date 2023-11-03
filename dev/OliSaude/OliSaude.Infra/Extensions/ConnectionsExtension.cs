@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OliSaude.Application.Clientes.Queries;
 using OliSaude.Application.Interfaces;
 using OliSaude.Infra.Data;
 using OliSaude.Infra.Repostorio;

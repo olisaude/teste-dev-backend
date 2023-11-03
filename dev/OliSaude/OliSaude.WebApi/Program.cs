@@ -1,4 +1,8 @@
-using OliSaude.Infra.Extensions; 
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using OliSaude.Application.Clientes.Queries;
+using OliSaude.Infra.Extensions;
+using OliSaude.WebApi.Papiline;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +23,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", () => { });
+app.Endpoints(); 
 
 app.Run();
 
