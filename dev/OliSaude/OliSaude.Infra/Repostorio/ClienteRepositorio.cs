@@ -27,24 +27,22 @@ public class ClienteRepositorio : IClienteRepositorio
         return cliente; 
     }
 
-    public int Save(Cliente cliente)
+    public async Task<int> SaveAsync(Cliente cliente, CancellationToken cancellationToken)
     {
         _context.Add(cliente);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
 
         return cliente.Id;
     }
 
-    public void UpdateCliente(int id)
+    public async Task UpdateCliente(Cliente cliente, CancellationToken cancellationToken)
     {
-       var cliente = _context.Clientes.FirstOrDefault(x => x.Id == id);
         _context.Entry(cliente).State = EntityState.Modified; 
-        _context.SaveChanges();
+       await  _context.SaveChangesAsync(cancellationToken);
     }
 
-    public void DeleteCliente(int id)
+    public void DeleteCliente(Cliente cliente)
     {
-        var cliente = _context.Clientes.FirstOrDefault(x=>x.Id ==id);
         _context.Remove(cliente);
         _context.SaveChanges(); 
     }

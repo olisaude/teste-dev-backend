@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OliSaude.Domain", "OliSaude
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OliSaude.Application", "OliSaude.Application\OliSaude.Application.csproj", "{1B2FB43A-53BD-4FAC-BC09-2E8A743B1E6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OliSaude.Infra", "OliSaude.Infra\OliSaude.Infra.csproj", "{6DBF3EFF-F3F6-4916-98E8-DCB96B4E35A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1B2FB43A-53BD-4FAC-BC09-2E8A743B1E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B2FB43A-53BD-4FAC-BC09-2E8A743B1E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B2FB43A-53BD-4FAC-BC09-2E8A743B1E6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBF3EFF-F3F6-4916-98E8-DCB96B4E35A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBF3EFF-F3F6-4916-98E8-DCB96B4E35A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBF3EFF-F3F6-4916-98E8-DCB96B4E35A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBF3EFF-F3F6-4916-98E8-DCB96B4E35A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,13 +25,12 @@ public class Cliente : Entity
 
     public void UpdateCliente(string nome, 
         DateTime dataNascimento,
-        ESexo sexo,
-        ProblemaSaude problemaDeSaude, DateTime dateActualizacao)
+        ProblemaSaude problemaDeSaude, 
+        DateTime dateActualizacao)
     {
-        nome = Nome;
-        dataNascimento= DataNascimento;
-        sexo = Sexo;
-        problemaDeSaude = ProblemaDeSaude;
+        Nome =nome;
+        DataNascimento=dataNascimento;
+        ProblemaDeSaude =problemaDeSaude;
         DataActualizacao= dateActualizacao;
     }
 }

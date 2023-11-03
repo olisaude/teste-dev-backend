@@ -4,10 +4,10 @@ namespace OliSaude.Application.Interfaces
 {
     public interface IClienteRepositorio
     {
-        int Save(Cliente cliente);
+        Task<int> SaveAsync(Cliente cliente, CancellationToken cancellationToken);
         IEnumerable<Cliente> GetAllClientes();
         Cliente GetCliente(int id);
-        void UpdateCliente(int id); 
-        void DeleteCliente(int cliente);
+        Task UpdateCliente(Cliente cliente, CancellationToken cancellationToken); 
+        void DeleteCliente(Cliente cliente);
     }
 }
