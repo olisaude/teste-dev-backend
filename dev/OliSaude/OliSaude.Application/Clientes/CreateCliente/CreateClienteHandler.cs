@@ -5,11 +5,11 @@ using OliSaude.Domain.ValueObject;
 
 namespace OliSaude.Application.Clientes.CreateCliente
 {
-    public class CreateUserHandler : IRequestHandler<CreateClienteCommand, int>
+    public class CreateClienteHandler : IRequestHandler<CreateClienteCommand, int>
     {
         private readonly IClienteRepositorio _repo;
 
-        public CreateUserHandler(IClienteRepositorio repo)
+        public CreateClienteHandler(IClienteRepositorio repo)
         {
             _repo = repo;
         }

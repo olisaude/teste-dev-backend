@@ -11,37 +11,37 @@ namespace OliSaude.WebApi.Papiline
     {
         public static void Endpoints(this WebApplication app)
         {
-            app.MapGet("api/v1/clientes", async ([FromQuery] GetAllClienteQuery query,
+            app.MapGet("/api/v1/clientes", async (GetAllClienteQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
                 var result = await mediator.Send(query);
                 if (result is null)
-                    Results.NotFound("Resultado não encontrado");
+                    return Results.NotFound("Resultado não encontrado");
                 return Results.Ok(result);
             });
 
-            app.MapGet("api/v1/clientes/{id}", async ([FromQuery] GetClienteByIdQuery query,
+            app.MapGet("/api/v1/clientes/{id}", async (GetClienteByIdQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
                 var result = await mediator.Send(query);
                 if (result is null)
-                    Results.BadRequest("Resultado não encontrado");
+                    return Results.BadRequest("Resultado não encontrado");
                 return Results.Ok(result);
             });
 
-            app.MapGet("api/v1/clientes/maiorRisco", async ([FromQuery] GetClienteMaiorRiscoQuery query,
+            app.MapGet("/api/v1/clientes/maiorRisco", async (GetClienteMaiorRiscoQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
                 var result =await mediator.Send(query);
                 if (result is null)
-                    Results.NotFound("Resultado não encontrado");
+                   return Results.NotFound("Resultado não encontrado");
                 return Results.Ok(result);
             });
 
-            app.MapPost("api/v1/clientes", async ([FromBody] CreateClienteCommand command,
+            app.MapPost("/api/v1/clientes", async ([FromBody] CreateClienteCommand command,
                 [FromServices] IMediator mediator) =>
             { 
                 var result = await mediator.Send(command);
@@ -50,13 +50,13 @@ namespace OliSaude.WebApi.Papiline
                 return Results.Created($"/{result}", result);
             });
 
-            app.MapPut("api/v1/clientes", async ([FromBody] UpdateClienteCommand command,
+            app.MapPut("/api/v1/clientes", async ([FromBody] UpdateClienteCommand command,
                 [FromServices] IMediator mediator) =>
             {
                 await mediator.Send(command);
             });
 
-            app.MapDelete("api/v1/clientes", async ([FromBody] DeleteClienteCommand command,
+            app.MapDelete("/api/v1/clientes", async ([FromBody] DeleteClienteCommand command,
                     [FromServices] IMediator mediator) =>
            {
                 await mediator.Send(command);

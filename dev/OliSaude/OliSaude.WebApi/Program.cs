@@ -1,6 +1,3 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using OliSaude.Application.Clientes.Queries;
 using OliSaude.Infra.Extensions;
 using OliSaude.WebApi.Papiline;
 
