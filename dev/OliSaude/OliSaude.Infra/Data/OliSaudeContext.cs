@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OliSaude.Domain.Entities;
+using System.Reflection;
 
 namespace OliSaude.Infra.Data; 
 
@@ -15,5 +16,6 @@ public class OliSaudeContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); 
     }
 }

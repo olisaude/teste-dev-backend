@@ -10,7 +10,7 @@ namespace OliSaude.Infra.Extensions
 {
     public static class ConnectionsExtension
     {
-        public static IServiceCollection AddConnection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDependece(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<OliSaudeContext>(options => 
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnetion")));
@@ -20,10 +20,7 @@ namespace OliSaude.Infra.Extensions
 
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 
-
             return services;
-     
         }
-
     }
 }

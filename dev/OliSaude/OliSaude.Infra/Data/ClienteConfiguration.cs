@@ -8,6 +8,8 @@ namespace OliSaude.Infra.Data
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
+            builder.ToTable(nameof(Cliente));
+
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
@@ -16,10 +18,12 @@ namespace OliSaude.Infra.Data
 
             builder.Property(x => x.Nome)
                 .IsRequired()
+                .HasColumnName("Nome_Cliente")
                 .HasMaxLength(500);
 
             builder.Property(x => x.DataNascimento)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("DataNascimento");
 
             builder.Property(x => x.Sexo)
                 .IsRequired();
@@ -27,17 +31,19 @@ namespace OliSaude.Infra.Data
             builder.OwnsOne(x => x.ProblemaDeSaude)
                 .Property(p => p.Nome)
                 .IsRequired()
+                .HasColumnName("Problema")
                 .HasMaxLength(200);
 
             builder.OwnsOne(x => x.ProblemaDeSaude)
                 .Property(p => p.Grau)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("Grau");
 
             builder.Property(x => x.DataCriacao)
                 .IsRequired();
 
             builder.Property(x => x.DataActualizacao)
-                .IsRequired(false);
+                .IsRequired();
         }
     }
 }

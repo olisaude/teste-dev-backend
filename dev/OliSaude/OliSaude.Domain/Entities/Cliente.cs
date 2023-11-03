@@ -5,6 +5,10 @@ namespace OliSaude.Domain.Entities;
 
 public class Cliente : Entity
 {
+    private Cliente()
+    {
+        
+    }
     public Cliente(string nome, DateTime 
         dataNascimento, 
         ESexo sexo, 
