@@ -7,6 +7,7 @@ namespace OliSaude.Application.Clientes.Queries
 {
     public class GetAllClienteQuery : IRequest<IEnumerable<ClienteDto>>
     {
+        public static bool TryParse(string value, out GetAllClienteQuery result) => TryParse(value, out result);
     }
 
     public class GetAllClienteHandler : IRequestHandler<GetAllClienteQuery, IEnumerable<ClienteDto>>

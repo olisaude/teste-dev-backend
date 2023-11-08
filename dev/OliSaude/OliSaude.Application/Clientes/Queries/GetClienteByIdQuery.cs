@@ -8,6 +8,18 @@ namespace OliSaude.Application.Clientes.Queries
     public class GetClienteByIdQuery: IRequest<ClienteDto>
     {
         public int Id { get; set; }
+
+        public static bool TryParse(string value, out  GetClienteByIdQuery query)
+        {
+            if(value is null)
+            {
+                query = default; 
+                return false;
+            }
+            query = new GetClienteByIdQuery { Id = int.Parse(value)};
+            return true;       
+        }
+            
     }
 
     public class GetClienteByIdHandler : IRequestHandler<GetClienteByIdQuery, ClienteDto>

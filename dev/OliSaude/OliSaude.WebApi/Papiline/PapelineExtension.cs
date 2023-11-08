@@ -11,7 +11,7 @@ namespace OliSaude.WebApi.Papiline
     {
         public static void Endpoints(this WebApplication app)
         {
-            app.MapGet("/api/v1/clientes", async (GetAllClienteQuery query,
+            app.MapGet("/api/v1/clientes", async ([FromQuery] GetAllClienteQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
@@ -21,7 +21,7 @@ namespace OliSaude.WebApi.Papiline
                 return Results.Ok(result);
             });
 
-            app.MapGet("/api/v1/clientes/{id}", async (GetClienteByIdQuery query,
+            app.MapGet("/api/v1/clientes/{id}", async ([FromQuery] GetClienteByIdQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
@@ -31,7 +31,7 @@ namespace OliSaude.WebApi.Papiline
                 return Results.Ok(result);
             });
 
-            app.MapGet("/api/v1/clientes/maiorRisco", async (GetClienteMaiorRiscoQuery query,
+            app.MapGet("/api/v1/clientes/maiorRisco", async ([AsParameters] GetClienteMaiorRiscoQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
@@ -45,7 +45,7 @@ namespace OliSaude.WebApi.Papiline
                 [FromServices] IMediator mediator) =>
             { 
                 var result = await mediator.Send(command);
-                if (result > 1)
+                if (result == 0)
                     throw new Exception("Erro ao salvar o cliente"); 
                 return Results.Created($"/{result}", result);
             });

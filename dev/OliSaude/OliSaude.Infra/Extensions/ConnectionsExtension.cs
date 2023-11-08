@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OliSaude.Application.Clientes.CreateCliente;
@@ -6,6 +7,7 @@ using OliSaude.Application.Clientes.DeleteCliente;
 using OliSaude.Application.Clientes.Queries;
 using OliSaude.Application.Clientes.UpdateCliente;
 using OliSaude.Application.Clientes.UpdateUser;
+using OliSaude.Application.Dto;
 using OliSaude.Application.Interfaces;
 using OliSaude.Infra.Data;
 using OliSaude.Infra.Repostorio;
@@ -24,19 +26,14 @@ namespace OliSaude.Infra.Extensions
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
-            services.AddScoped<GetAllClienteQuery>();
-            services.AddScoped<GetAllClienteHandler>();
-            services.AddScoped<GetClienteByIdQuery>();
-            services.AddScoped<GetClienteByIdHandler>();
-            services.AddScoped<GetClienteMaiorRiscoQuery>();
-            services.AddScoped<GetClienteMaiorRiscoHandler>();
+            services.AddScoped<IRequestHandler< GetAllClienteQuery, IEnumerable < ClienteDto >>,GetAllClienteHandler>();
+            services.AddScoped<IRequestHandler< GetClienteByIdQuery, ClienteDto >,GetClienteByIdHandler >();
+            services.AddScoped<IRequestHandler< GetClienteMaiorRiscoQuery, IEnumerable < ClienteDto >>, GetClienteMaiorRiscoHandler >();
 
-            services.AddScoped<CreateClienteHandler>();
-            services.AddScoped<CreateClienteCommand>();
-            services.AddScoped<UpdateClienteHandler>();
-            services.AddScoped<UpdateClienteCommand>();
-            services.AddScoped<DeleteClienteHandler>();
-            services.AddScoped<DeleteClienteCommand>();
+
+            services.AddScoped< IRequestHandler<CreateClienteCommand, int>, CreateClienteHandler >();
+            services.AddScoped< IRequestHandler < UpdateClienteCommand >, UpdateClienteHandler >();
+            services.AddScoped< IRequestHandler < DeleteClienteCommand >, DeleteClienteHandler >();
 
             return services;
         }
