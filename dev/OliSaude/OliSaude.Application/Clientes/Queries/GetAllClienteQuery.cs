@@ -7,7 +7,17 @@ namespace OliSaude.Application.Clientes.Queries
 {
     public class GetAllClienteQuery : IRequest<IEnumerable<ClienteDto>>
     {
-        public static bool TryParse(string value, out GetAllClienteQuery result) => TryParse(value, out result);
+        public static bool TryParse(string value, out GetAllClienteQuery result)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+            {
+                result = new GetAllClienteQuery();
+                return true;
+            }
+            result = null; 
+            return false; 
+
+        }
     }
 
     public class GetAllClienteHandler : IRequestHandler<GetAllClienteQuery, IEnumerable<ClienteDto>>
@@ -26,8 +36,9 @@ namespace OliSaude.Application.Clientes.Queries
         {
             await Task.CompletedTask;
             var clientes = _repositorio.GetAllClientes();
+            var clientesDto = _mapper.Map<IEnumerable<ClienteDto>>(clientes); 
 
-            return _mapper.Map<IEnumerable<ClienteDto>>(clientes);
+            return clientesDto;
         }
     }
 }

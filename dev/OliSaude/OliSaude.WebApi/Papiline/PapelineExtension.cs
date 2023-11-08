@@ -11,17 +11,17 @@ namespace OliSaude.WebApi.Papiline
     {
         public static void Endpoints(this WebApplication app)
         {
-            app.MapGet("/api/v1/clientes", async ([FromQuery] GetAllClienteQuery query,
+            app.MapGet("/api/v1/clientes", async ([AsParameters] GetAllClienteQuery query,
                 [FromServices] IMediator mediator) =>
             {
-
+            
                 var result = await mediator.Send(query);
                 if (result is null)
                     return Results.NotFound("Resultado não encontrado");
                 return Results.Ok(result);
             });
 
-            app.MapGet("/api/v1/clientes/{id}", async ([FromQuery] GetClienteByIdQuery query,
+            app.MapGet("/api/v1/clientes/{id:int}", async ([AsParameters] GetClienteByIdQuery query,
                 [FromServices] IMediator mediator) =>
             {
 
