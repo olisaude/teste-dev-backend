@@ -2,6 +2,7 @@
 using MediatR;
 using OliSaude.Application.Dto;
 using OliSaude.Application.Interfaces;
+using OliSaude.Domain.Entities;
 
 namespace OliSaude.Application.Clientes.Queries
 {
@@ -24,19 +25,20 @@ namespace OliSaude.Application.Clientes.Queries
 
     public class GetClienteByIdHandler : IRequestHandler<GetClienteByIdQuery, ClienteDto>
     {
-        private readonly IMapper _mapper;
+        private readonly IAdapter<Cliente, ClienteDto> _adapter;
         private readonly IClienteRepositorio _repositorio;
 
-        public GetClienteByIdHandler(IMapper mapper, IClienteRepositorio repositorio)
+        public GetClienteByIdHandler(IAdapter<Cliente, ClienteDto> adapter, IClienteRepositorio repositorio)
         {
-            _mapper = mapper;
+            _adapter = adapter;
             _repositorio = repositorio;
         }
 
         public async Task<ClienteDto> Handle(GetClienteByIdQuery request, CancellationToken cancellationToken)
         {
            var cliente = await _repositorio.GetClienteAsync(request.Id);
-           return _mapper.Map<ClienteDto>(cliente);
+           var clienteDto = _adapter.Adapte(cliente);
+            return clienteDto; 
         }
     }
 }

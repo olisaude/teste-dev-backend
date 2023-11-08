@@ -8,7 +8,9 @@ using OliSaude.Application.Clientes.Queries;
 using OliSaude.Application.Clientes.UpdateCliente;
 using OliSaude.Application.Clientes.UpdateUser;
 using OliSaude.Application.Dto;
+using OliSaude.Application.Dto.Mapper;
 using OliSaude.Application.Interfaces;
+using OliSaude.Domain.Entities;
 using OliSaude.Infra.Data;
 using OliSaude.Infra.Repostorio;
 using System.Reflection;
@@ -25,11 +27,14 @@ namespace OliSaude.Infra.Extensions
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+            services.AddAutoMapper(typeof(ProfileMaping));
+
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
             services.AddScoped<IRequestHandler< GetAllClienteQuery, IEnumerable < ClienteDto >>,GetAllClienteHandler>();
             services.AddScoped<IRequestHandler< GetClienteByIdQuery, ClienteDto >,GetClienteByIdHandler >();
             services.AddScoped<IRequestHandler< GetClienteMaiorRiscoQuery, IEnumerable < ClienteDto >>, GetClienteMaiorRiscoHandler >();
 
+            services.AddTransient<IAdapter<Cliente, ClienteDto>, ClienteToDtoAdapter>(); 
 
             services.AddScoped< IRequestHandler<CreateClienteCommand, int>, CreateClienteHandler >();
             services.AddScoped< IRequestHandler < UpdateClienteCommand >, UpdateClienteHandler >();

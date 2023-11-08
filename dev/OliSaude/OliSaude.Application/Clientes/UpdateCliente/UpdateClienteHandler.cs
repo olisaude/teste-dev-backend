@@ -21,7 +21,7 @@ namespace OliSaude.Application.Clientes.UpdateCliente
             if (cliente is null)
                 throw new Exception("Cliente invalido");
             var problema = new ProblemaSaude(request.NomeProblema, request.GrauProblema);
-            cliente.UpdateCliente(request.Nome, request.DataNascimento, problema, DateTime.UtcNow);
+            cliente.UpdateCliente(request.Nome, request.DataNascimento, problema);
             await _repo.UpdateClienteAsync(cliente, cancellationToken); 
         }
     }

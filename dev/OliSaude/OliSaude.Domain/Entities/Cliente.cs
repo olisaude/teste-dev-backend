@@ -29,12 +29,11 @@ public class Cliente : Entity
 
     public void UpdateCliente(string nome, 
         DateTime dataNascimento,
-        ProblemaSaude problemaDeSaude, 
-        DateTime dateActualizacao)
+        ProblemaSaude problemaDeSaude)
     {
         Nome =nome;
         DataNascimento=dataNascimento;
         ProblemaDeSaude =problemaDeSaude;
-        DataActualizacao= dateActualizacao;
+        DataActualizacao = DateTime.UtcNow; 
     }
 }
