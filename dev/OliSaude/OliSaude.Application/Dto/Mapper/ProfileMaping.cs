@@ -11,7 +11,7 @@ namespace OliSaude.Application.Dto.Mapper
             CreateMap<Cliente, ClienteDto>()
                 .ForMember(c=>c.NomeProblema, opt =>opt.MapFrom(ob=>ob.ProblemaDeSaude.Nome))
                 .ForMember(c => c.GrauProblema, opt => opt.MapFrom(ob => ob.ProblemaDeSaude.Grau))
-                .ForMember(c=>c.DataRegisto, opt=>opt.MapFrom(ob=>ob.DataCriacao));
+                .ForMember(c=>c.DataRegisto, opt=>opt.MapFrom(ob=>ob.DataCriacao)).ReverseMap();
         }
     }
 }

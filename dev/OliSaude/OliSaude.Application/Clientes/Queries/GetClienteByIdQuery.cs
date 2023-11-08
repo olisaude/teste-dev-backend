@@ -25,19 +25,19 @@ namespace OliSaude.Application.Clientes.Queries
 
     public class GetClienteByIdHandler : IRequestHandler<GetClienteByIdQuery, ClienteDto>
     {
-        private readonly IAdapter<Cliente, ClienteDto> _adapter;
+        private readonly IMapper _mapper;
         private readonly IClienteRepositorio _repositorio;
 
-        public GetClienteByIdHandler(IAdapter<Cliente, ClienteDto> adapter, IClienteRepositorio repositorio)
+        public GetClienteByIdHandler(IMapper mapper, IClienteRepositorio repositorio)
         {
-            _adapter = adapter;
+            _mapper = mapper;
             _repositorio = repositorio;
         }
 
         public async Task<ClienteDto> Handle(GetClienteByIdQuery request, CancellationToken cancellationToken)
         {
            var cliente = await _repositorio.GetClienteAsync(request.Id);
-           var clienteDto = _adapter.Adapte(cliente);
+           var clienteDto = _mapper.Map<ClienteDto>(cliente);
             return clienteDto; 
         }
     }
