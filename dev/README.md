@@ -26,6 +26,9 @@ De Formas a testar meu conhecimento em desenvolvimento de API, alinhei no presen
 
 ## Instrução de uso
 * 
-
+## EndPoints da API
+### Cliente
+* 
 ## Tecnologias Usadas 
 * 
+

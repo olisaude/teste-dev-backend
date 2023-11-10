@@ -53,13 +53,16 @@ namespace OliSaude.WebApi.Papiline
             app.MapPut("/api/v1/clientes", async ([FromBody] UpdateClienteCommand command,
                 [FromServices] IMediator mediator) =>
             {
-                await mediator.Send(command);
+               await mediator.Send(command);
             });
 
             app.MapDelete("/api/v1/clientes", async ([FromBody] DeleteClienteCommand command,
                     [FromServices] IMediator mediator) =>
            {
-                await mediator.Send(command);
+                 var result = await mediator.Send(command);
+               if (!result.IsSucess)
+                   return Results.BadRequest(); 
+               return Results.Ok(result);
             });
         }
     }

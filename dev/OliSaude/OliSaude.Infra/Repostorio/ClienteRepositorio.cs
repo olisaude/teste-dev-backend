@@ -27,12 +27,10 @@ public class ClienteRepositorio : IClienteRepositorio
         return cliente; 
     }
 
-    public async Task<int> SaveAsync(Cliente cliente, CancellationToken cancellationToken)
+    public async Task SaveAsync(Cliente cliente, CancellationToken cancellationToken = default)
     {
         _context.Add(cliente);
         await _context.SaveChangesAsync();
-
-        return cliente.Id;
     }
 
     public async Task UpdateClienteAsync(Cliente cliente, CancellationToken cancellationToken)
