@@ -45,9 +45,9 @@ namespace OliSaude.WebApi.Papiline
                 [FromServices] IMediator mediator) =>
             { 
                 var result = await mediator.Send(command);
-                if (result == 0)
+                if (!result.IsSucess)
                     throw new Exception("Erro ao salvar o cliente"); 
-                return Results.Created($"/{result}", result);
+                return Results.Created($"/api/v1/cliente/{result.Data.Id}", result);
             });
 
             app.MapPut("/api/v1/clientes", async ([FromBody] UpdateClienteCommand command,

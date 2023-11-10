@@ -5,20 +5,28 @@ using OliSaude.Domain.ValueObject;
 
 namespace OliSaude.Application.Clientes.CreateCliente
 {
-    public class CreateClienteHandler : IRequestHandler<CreateClienteCommand, int>
+    public class CreateClienteHandler : IRequestHandler<CreateClienteCommand, ClienteResponse>
     {
-        private readonly IClienteRepositorio _repo;
+        private readonly IClienteRepositorio _repositorio;
 
-        public CreateClienteHandler(IClienteRepositorio repo)
+        public CreateClienteHandler(IClienteRepositorio repositorio)
         {
-            _repo = repo;
+            _repositorio = repositorio;
         }
 
-        public  async Task<int> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
+        public  async Task<ClienteResponse> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
         {
             var problema = new ProblemaSaude(request.NomeProblema, request.GrauProblema);
             var cliente = new Cliente(request.Nome, request.DataNascimento, request.Sexo, problema); 
-            return await _repo.SaveAsync(cliente, cancellationToken);
+            await _repositorio.SaveAsync(cliente, cancellationToken);
+
+            if (cliente.Id == 0)
+                return new ClienteResponse("Não foi possivel salvar o cliente", false);
+
+            var obj = new ResponseData { Id = cliente.Id, 
+                    Nome = cliente.Nome }; 
+
+            return new ClienteResponse(obj, "Cliente Salvo com sucesso", true) ; 
                 
         }
     }

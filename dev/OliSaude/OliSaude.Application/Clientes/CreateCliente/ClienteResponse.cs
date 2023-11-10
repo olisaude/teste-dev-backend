@@ -8,9 +8,9 @@ namespace OliSaude.Application.Clientes.CreateCliente
         {
             
         }
-        public ClienteResponse(int id, string mensagem, bool isSucess)
+        public ClienteResponse(ResponseData obj, string mensagem, bool isSucess)
         {
-            Id = id;
+            Data =  obj;
             Mensagem = mensagem;
             IsSucess = isSucess;
         }
@@ -19,6 +19,12 @@ namespace OliSaude.Application.Clientes.CreateCliente
             Mensagem = mensagem; 
             IsSucess = isSucess;
         }
+        public ResponseData? Data { get; set; }
+    }
+
+    public class ResponseData
+    {
         public int Id { get; set; }
+        public string Nome { get; set; }
     }
 }
