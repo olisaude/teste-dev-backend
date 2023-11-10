@@ -46,7 +46,7 @@ namespace OliSaude.WebApi.Papiline
             { 
                 var result = await mediator.Send(command);
                 if (!result.IsSucess)
-                    throw new Exception("Erro ao salvar o cliente"); 
+                    return Results.BadRequest(result); 
                 return Results.Created($"/api/v1/cliente/{result.Data.Id}", result);
             });
 
@@ -55,7 +55,7 @@ namespace OliSaude.WebApi.Papiline
             {
                var result = await mediator.Send(command);
                 if (!result.IsSucess)
-                    return Results.NotFound("Não foi possivel actualizar o cliente");
+                    return Results.NotFound(result);
 
                 return Results.Ok(result);
             });
@@ -65,7 +65,7 @@ namespace OliSaude.WebApi.Papiline
            {
                  var result = await mediator.Send(command);
                if (!result.IsSucess)
-                   return Results.BadRequest(); 
+                   return Results.Json(result, statusCode: result.StatusCode); 
                return Results.Ok(result);
             });
         }
