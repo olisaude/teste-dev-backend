@@ -61,7 +61,6 @@ namespace OliSaude.WebApi.Papiline
            {
                 await mediator.Send(command);
             });
-
         }
     }
 }
