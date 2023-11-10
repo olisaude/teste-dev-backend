@@ -33,7 +33,7 @@ namespace OliSaude.Infra.Extensions
             services.AddScoped<IRequestHandler< GetClienteMaiorRiscoQuery, IEnumerable < ClienteDto >>, GetClienteMaiorRiscoHandler >();
 
             services.AddScoped< IRequestHandler<CreateClienteCommand, ClienteResponse>, CreateClienteHandler >();
-            services.AddScoped< IRequestHandler < UpdateClienteCommand >, UpdateClienteHandler >();
+            services.AddScoped< IRequestHandler < UpdateClienteCommand, UpdateResponse >, UpdateClienteHandler >();
             services.AddScoped< IRequestHandler < DeleteClienteCommand, DeleteResponse >, DeleteClienteHandler >();
 
             return services;

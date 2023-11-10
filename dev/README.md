@@ -24,11 +24,52 @@ De Formas a testar meu conhecimento em desenvolvimento de API, alinhei no presen
 
 - Cliente: Operações CRUD para gerenciar informações o Cliente.
 
-## Instrução de uso
-* 
 ## EndPoints da API
-### Cliente
-* 
-## Tecnologias Usadas 
-* 
 
+### Cliente
+
+- GET /api/v1/clientes : Opter todos os cliente
+
+* GET /api/v1/clientes/{id} : opter um cliente por Id
+
+* GET /api/v1/clientes/maiorRiscos : Opter os 10 clientes com maior risco
+
+* POST /api/v1/clientes : Criar um novo cliente
+
+* PUT /api/v1/clientes :Actualizar um cliente
+
+* DELETE /api/v1/clientes : Remover um cliente
+
+## como usar
+
+- Clone este repositório.
+
+- Configure o ambiente de desenvolvimento e as dependências necessárias.
+
+- Execute a aplicação.
+
+- Comece a utilizar as funcionalidades da API.
+
+* Acesse a documentação da API (Swagger) para entender as rotas e funcionalidades disponíveis.
+
+![Alt text](image.png)
+
+## Tecnologias Usadas
+
+- .NET 7.
+
+- Asp.Net Core 7.
+
+- Entity Framework core.
+
+- SQLite.
+
+- CQRS.
+
+- AutoMapper.
+
+- Clean Architecture.
+
+* MediatR.
+
+* Minimal API.

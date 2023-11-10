@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using OliSaude.Domain.Enums;
+using OliSaude.Application.Clientes.UpdateCliente;
 
-namespace OliSaude.Application.Clientes.UpdateUser; 
+namespace OliSaude.Application.Clientes.UpdateUser;
 
-public class UpdateClienteCommand : IRequest
+public class UpdateClienteCommand : IRequest<UpdateResponse>
 {
     public int Id { get; set; }
     public string Nome { get; set; }

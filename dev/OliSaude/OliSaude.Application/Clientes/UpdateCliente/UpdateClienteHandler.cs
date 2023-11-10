@@ -5,24 +5,43 @@ using OliSaude.Domain.ValueObject;
 
 namespace OliSaude.Application.Clientes.UpdateCliente
 {
-    public class UpdateClienteHandler : IRequestHandler<UpdateClienteCommand>
+    public class UpdateClienteHandler : IRequestHandler<UpdateClienteCommand, UpdateResponse>
     {
-        private readonly IClienteRepositorio _repo;
+        private readonly IClienteRepositorio _repositoio;
 
-        public UpdateClienteHandler(IClienteRepositorio repo)
+        public UpdateClienteHandler(IClienteRepositorio repositorio)
         {
-            _repo = repo;
+            _repositoio = repositorio;
         }
 
-        public async Task Handle(UpdateClienteCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateResponse> Handle(UpdateClienteCommand request, CancellationToken cancellationToken)
         {
-            var cliente =await _repo.GetClienteAsync(request.Id);
+            try
+            {
+                var cliente = await _repositoio.GetClienteAsync(request.Id);
 
-            if (cliente is null)
-                throw new Exception("Cliente invalido");
-            var problema = new ProblemaSaude(request.NomeProblema, request.GrauProblema);
-            cliente.UpdateCliente(request.Nome, request.DataNascimento, problema);
-            await _repo.UpdateClienteAsync(cliente, cancellationToken); 
+                if (cliente is null)
+                    return new UpdateResponse("Cliente invalido", 400);
+
+                var problema = new ProblemaSaude(request.NomeProblema, request.GrauProblema);
+                cliente.UpdateCliente(request.Nome, request.DataNascimento, problema);
+                await _repositoio.UpdateClienteAsync(cliente, cancellationToken);
+                
+                var data = new UpdateData(cliente.Id, 
+                    cliente.Nome,
+                    Enum.GetName(cliente.Sexo), 
+                    cliente.DataNascimento,
+                    cliente.ProblemaDeSaude.Nome, 
+                    cliente.ProblemaDeSaude.Grau, 
+                    cliente.DataCriacao, 
+                    cliente.DataActualizacao);
+
+                return new UpdateResponse(data, "Cliente actualizado com sucesso"); 
+            }catch (Exception ex)
+            {
+                return new UpdateResponse(ex.Message, 500); 
+            }
+
         }
     }
 }
