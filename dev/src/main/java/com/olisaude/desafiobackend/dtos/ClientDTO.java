@@ -11,6 +11,7 @@ import java.util.List;
 
 public record ClientDTO(@NotBlank String name,
                         @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateBirth,
-                        @NotBlank String gender) {
+                        @NotBlank String gender,
+                        List<HealthProblem> healthProblems) {
 
 }

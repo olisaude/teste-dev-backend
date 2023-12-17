@@ -14,10 +14,10 @@ import lombok.*;
 public class HealthProblem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(name = "health_problem_active")
+    @Column(name = "active")
     private boolean active;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")

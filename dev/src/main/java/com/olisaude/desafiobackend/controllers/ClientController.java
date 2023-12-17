@@ -27,5 +27,4 @@ public class ClientController {
         ResponseClientDTO responseClientDTO = new ResponseClientDTO(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseClientDTO);
     }
-
 }

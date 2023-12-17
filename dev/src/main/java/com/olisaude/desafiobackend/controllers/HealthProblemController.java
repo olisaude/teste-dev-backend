@@ -20,9 +20,9 @@ public class HealthProblemController {
     private HealthProblemService service;
 
 
-    @PostMapping("/save/{id}")
-    public ResponseEntity<ResponseHealthProblemDTO> create(@RequestBody @Validated HealthProblemDTO dto, @PathVariable Long id){
-        HealthProblem healthProblem = service.saveHealthProblem(dto,id);
+    @PostMapping("/save")
+    public ResponseEntity<ResponseHealthProblemDTO> create(@RequestBody @Validated HealthProblemDTO dto){
+        HealthProblem healthProblem = service.saveHealthProblem(dto);
         ResponseHealthProblemDTO response = new ResponseHealthProblemDTO(healthProblem);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 

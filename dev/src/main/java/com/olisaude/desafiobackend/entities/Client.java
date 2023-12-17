@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "clients")
@@ -39,6 +40,7 @@ public class Client {
     public Client(){}
 
     public Client(ClientDTO clientDTO){
+        this.healthProblem = new ArrayList<>(clientDTO.healthProblems());
         this.name = clientDTO.name();
         this.dateBirth = clientDTO.dateBirth();
         this.gender = clientDTO.gender();
