@@ -11,7 +11,8 @@ public record ResponseClientDTO(String name,
                                 String gender,
                                 List<ResponseHealthProblemDTO> healthProblems) {
 
-    public ResponseClientDTO(String name, LocalDate birthDate, String gender,List<ResponseHealthProblemDTO> healthProblems) {
+    public ResponseClientDTO(String name, LocalDate birthDate, String gender,
+                             List<ResponseHealthProblemDTO> healthProblems) {
         this.name = name;
         this.birthDate = birthDate;
         this.gender = gender;

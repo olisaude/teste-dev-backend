@@ -1,6 +1,6 @@
 package com.olisaude.desafiobackend.entities;
 
-import com.olisaude.desafiobackend.dtos.ClientDTO;
+import com.olisaude.desafiobackend.dtos.RequestClientDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,7 +39,7 @@ public class Client {
 
     public Client(){}
 
-    public Client(ClientDTO clientDTO){
+    public Client(RequestClientDTO clientDTO){
         this.healthProblem = new ArrayList<>(clientDTO.healthProblems());
         this.name = clientDTO.name();
         this.dateBirth = clientDTO.dateBirth();

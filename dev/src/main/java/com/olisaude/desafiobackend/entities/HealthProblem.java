@@ -1,6 +1,6 @@
 package com.olisaude.desafiobackend.entities;
 
-import com.olisaude.desafiobackend.dtos.HealthProblemDTO;
+import com.olisaude.desafiobackend.dtos.RequestHealthProblemDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,10 +24,10 @@ public class HealthProblem {
     private Client client;
     private Integer degree;
 
-    public HealthProblem(HealthProblemDTO dto){
+    public HealthProblem(RequestHealthProblemDTO dto){
         this.name = dto.name();
         this.degree = dto.degree();
-        this.setActive(true);
+        this.active = true;
     }
 
 }
