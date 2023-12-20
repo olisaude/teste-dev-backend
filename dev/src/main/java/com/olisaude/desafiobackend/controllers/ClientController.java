@@ -3,6 +3,7 @@ package com.olisaude.desafiobackend.controllers;
 import com.olisaude.desafiobackend.dtos.RequestClientDTO;
 import com.olisaude.desafiobackend.dtos.ResponseClientDTO;
 import com.olisaude.desafiobackend.entities.Client;
+import com.olisaude.desafiobackend.services.ClientRiskCalculator;
 import com.olisaude.desafiobackend.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,12 @@ import java.util.List;
 public class ClientController {
 
 
-    @Autowired
+
     private ClientService clientService;
 
+    public ClientController(ClientService clientService){
+        this.clientService = clientService;
+    }
 
     @GetMapping
     public ResponseEntity<List<ResponseClientDTO>> getAll(){
@@ -31,5 +35,13 @@ public class ClientController {
         Client client = clientService.save(clientDTO);
         ResponseClientDTO responseClientDTO = new ResponseClientDTO(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseClientDTO);
+    }
+
+    @GetMapping(value = "/risk")
+    public ResponseEntity<List<ResponseClientDTO>> getBiggestRiskClient(){
+        List<ResponseClientDTO> response = clientService.getBiggestRisk().stream()
+                .map(client -> new ResponseClientDTO(client)).toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

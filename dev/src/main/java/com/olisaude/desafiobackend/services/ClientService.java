@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class ClientService {
 
-    @Autowired
+
     private ClientRepository clientRepository;
+
+    public ClientService(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
     @Transactional
     public List<Client> getAll(){
@@ -29,5 +33,9 @@ public class ClientService {
         }else{
             throw new RuntimeException("Error to create Client!");
         }
+    }
+
+    public List<Client> getBiggestRisk(){
+        return clientRepository.findTop10ByOrderByScoreRiskDesc();
     }
 }
