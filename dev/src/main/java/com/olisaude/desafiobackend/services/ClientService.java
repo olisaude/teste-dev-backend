@@ -1,13 +1,17 @@
 package com.olisaude.desafiobackend.services;
 
 import com.olisaude.desafiobackend.dtos.RequestClientDTO;
+import com.olisaude.desafiobackend.dtos.ResponseUpdateClientDTO;
 import com.olisaude.desafiobackend.entities.Client;
 import com.olisaude.desafiobackend.repositories.ClientRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -37,5 +41,19 @@ public class ClientService {
 
     public List<Client> getBiggestRisk(){
         return clientRepository.findTop10ByOrderByScoreRiskDesc();
+    }
+
+    public Client updateClient(Long id, ResponseUpdateClientDTO request){
+        Optional<Client> optionalClient = clientRepository.findById(id);
+
+        if (optionalClient.isPresent()){
+            Client client = optionalClient.get();
+            BeanUtils.copyProperties(request,client);
+            client.setUpdateDate(LocalDate.now());
+            return clientRepository.save(client);
+        }else {
+            throw new RuntimeException("Client not found");
+        }
+
     }
 }
