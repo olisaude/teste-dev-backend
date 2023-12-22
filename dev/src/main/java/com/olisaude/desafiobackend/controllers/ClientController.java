@@ -57,4 +57,13 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(responseClientDTO);
 
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseClientDTO> getClientById(@PathVariable Long id){
+        Client client = clientService.getClientById(id);
+
+        ResponseClientDTO response = new ResponseClientDTO(client);
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+    }
 }

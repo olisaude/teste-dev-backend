@@ -46,7 +46,7 @@ public class ClientService {
     public Client updateClient(Long id, ResponseUpdateClientDTO request){
         Optional<Client> optionalClient = clientRepository.findById(id);
 
-        if (optionalClient.isPresent()){
+        if (!optionalClient.isEmpty()){
             Client client = optionalClient.get();
             BeanUtils.copyProperties(request,client);
             client.setUpdateDate(LocalDate.now());
@@ -54,6 +54,17 @@ public class ClientService {
         }else {
             throw new RuntimeException("Client not found");
         }
+    }
 
+
+    public Client getClientById(Long id){
+        Optional<Client> optionalClient = clientRepository.findById(id);
+
+        if (!optionalClient.isEmpty()){
+            Client client = optionalClient.get();
+            return client;
+        }else{
+            throw new RuntimeException("Client not found");
+        }
     }
 }
